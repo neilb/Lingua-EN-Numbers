@@ -1,5 +1,6 @@
+
 package Lingua::EN::Numbers;
-require 5.004;
+require 5.004;  # Time-stamp: "2005-01-01 17:11:06 AST"
 
 require Exporter;
 @ISA = qw(Exporter);
@@ -7,30 +8,18 @@ require Exporter;
 use Carp;
 use strict qw(vars);
 use vars qw(
-	@EXPORT
-	@EXPORT_OK
-	$VERSION
-
-	$MODE
-
-	%INPUT_GROUP_DELIMITER
-	%INPUT_DECIMAL_DELIMITER
-	%OUTPUT_BLOCK_DELIMITER
-	%OUTPUT_GROUP_DELIMITER
-	%OUTPUT_NUMBER_DELIMITER
-	%OUTPUT_DECIMAL_DELIMITER
-
-	%NUMBER_NAMES
-	%SIGN_NAMES
-
-	$TRUE
-	$FALSE
-	$SIGN_POSITIVE
-	$SIGN_NEGATIVE
+ @EXPORT @EXPORT_OK $VERSION
+ $MODE
+ %INPUT_GROUP_DELIMITER %INPUT_DECIMAL_DELIMITER %OUTPUT_BLOCK_DELIMITER
+ %OUTPUT_GROUP_DELIMITER %OUTPUT_NUMBER_DELIMITER
+ %OUTPUT_DECIMAL_DELIMITER %NUMBER_NAMES %SIGN_NAMES
+ $TRUE $FALSE $SIGN_POSITIVE $SIGN_NEGATIVE
 );
 
+BEGIN { *DEBUG = sub () {0} unless defined &DEBUG } # setup a DEBUG constant
+
 BEGIN {
-	$VERSION = '0.01';
+	$VERSION = '0.02';
 
 	# Exporter Stuff
 	@EXPORT = qw();
@@ -114,7 +103,7 @@ BEGIN {
 			19	=>	'Nineteen',
 			20	=>	'Twenty',
 			30	=>	'Thirty',
-			40	=>	'Fourty',
+			40	=>	'Forty',
 			50	=>	'Fifty',
 			60	=>	'Sixty',
 			70	=>	'Seventy',
@@ -203,7 +192,7 @@ BEGIN {
 #################################################################
 sub import {
 	my ($module, $tag) = @_;
-	if (($tag eq "American") || ($tag eq "British")) {
+	if ($tag and ($tag eq "American") || ($tag eq "British")) {
 		$MODE = $tag;
 	}
 	else {
@@ -248,16 +237,25 @@ sub string_to_number {
 	# Strip out delimiters
 	$numberString =~ s/\Q$INPUT_GROUP_DELIMITER{$MODE}\E//g;
 
+        DEBUG > 3 and print "   Parsing numberstring [$numberString]\n";
+
 	my $sign = $SIGN_POSITIVE;
-	if ($numberString =~ /^-/) {
-		$numberString =~ s/^-//;
-		$sign = $SIGN_NEGATIVE;
+	if ($numberString =~ s/^-//) {
+	  $sign = $SIGN_NEGATIVE if $numberString =~ m/[1-9]/;
+	    # (but drop the sign on -0, -0.000, -.00000, etc)
 	}
-	$numberString =~ s/^0+//g;
+	
+	if(    $numberString =~ m/^0+$/s   ) { $numberString = '0' }
+	elsif( $numberString =~
+	 m/^0+\Q$INPUT_DECIMAL_DELIMITER{$MODE}\E/s ) { } # allow a predecimal zero
+	else {
+	  # Otherwise, strip any leading zeroes
+	  $numberString =~ s/^0+//g;
+        }
 
 	my $number = '';
 	my $decimal = '';
-	if ($numberString =~ /(^.+)\Q$INPUT_DECIMAL_DELIMITER{$MODE}\E(.+$)/) {
+	if ($numberString =~ /^(.*)\Q$INPUT_DECIMAL_DELIMITER{$MODE}\E(.+$)/) {
 		($number, $decimal) = ($1, $2);
 	} else {
 		$number = $numberString;
@@ -365,23 +363,39 @@ sub do_get_string {
 
 	my @blockStrings;
 	my $number = $self->{'string_data'}{$block};
+	
+	DEBUG > 4 and print "     Components: ", join(" ", map("$_",
+	  sort {$b <=> $a } keys %$number)), "\n";
+	
 	foreach my $component(sort {$b <=> $a } keys %$number) {
-		my $magnitude = $$number{$component}{'magnitude'};
+		my $magnitude = $$number{$component}{'magnitude'} || '';
 		my $factor = $$number{$component}{'factor'};
-
-		my @strings;
-		map { push @strings, join($OUTPUT_NUMBER_DELIMITER{$MODE}, @$_) } @$factor;
+                next unless $factor and @$factor;
+		my @strings = map join($OUTPUT_NUMBER_DELIMITER{$MODE}, @$_), @$factor;
+		
+		DEBUG > 5 and print "     Strings: [@strings]  Magnitude[$magnitude]  Factor[@{$$factor[0]}]\n";
+		
 		my $string = join($OUTPUT_GROUP_DELIMITER{$MODE}, @strings) . ' ' . $magnitude;
 		push @blockStrings, $string;
 	}
+	
+	DEBUG > 4 and print "     Blockstrings[", map("<$_>", @blockStrings), "]\n";
 
-	my $blockString = join($OUTPUT_BLOCK_DELIMITER{$MODE}, @blockStrings);
+	my $blockString = join($OUTPUT_BLOCK_DELIMITER{$MODE}, @blockStrings)
+	 || $NUMBER_NAMES{$MODE}{0};
+	$blockString .= ' ';
+	
+	DEBUG > 4 and print "     Blockstring[$blockString]\n";
+	
 	return $blockString;
 }
 
 
 sub parse {
 	my ($self, $numberString) = @_;
+
+        DEBUG > 2 and print "  Got number string to parse: [",
+         defined($numberString) ? $numberString : 'undef', "]\n";
 
 	if (! defined $self || ! $self) {
 		return $FALSE;
@@ -393,9 +407,11 @@ sub parse {
 	$self->{'numeric_data'}{'decimal'} = $decimal;
 	$self->{'numeric_data'}{'sign'} = $sign;
 
-	if (defined $number && $number) {
-		$self->{'string_data'}{'number'} = &parse_number($number);
-		$self->{'string_data'}{'sign'} = $SIGN_NAMES{$MODE}{$sign};
+        DEBUG > 2 and print "  Got num[$number] dec[$decimal] sign[$sign]\n";
+
+	if (defined $number) {
+	  $self->{'string_data'}{'number'} = &parse_number($number);
+	  $self->{'string_data'}{'sign'} = $SIGN_NAMES{$MODE}{$sign};
 	}
 	
 	if (defined $decimal && $decimal) {
@@ -417,6 +433,9 @@ sub get_string {
 	if ($self->{'string_data'}{'decimal'}) {
 		push @strings, $self->do_get_string('decimal');
 	}
+	
+	shift @strings if @strings > 1 and $strings[0] eq $NUMBER_NAMES{$MODE}{0};
+	 # don't need the zero on "zero point five"
 
 	my $string = join($OUTPUT_DECIMAL_DELIMITER{$MODE}, @strings);
 	if ($self->{'string_data'}{'sign'}) {
@@ -424,6 +443,7 @@ sub get_string {
 	}
 
 	$string =~ s/\s+$//;
+	$string =~ s/\s+/ /g;
 	return $string;
 }
 
@@ -456,6 +476,9 @@ Lingua::EN::Numbers - Converts numeric values into their English string equivale
 	$n->parse(-1281);
 	print "N = " . $n->get_string . "\n";
 
+
+  prints:
+        N = Negative One Thousand, Two-Hundred Eighty-One
 
 
 =head1 REQUIRES
@@ -600,10 +623,29 @@ A constant indicating the the current number is negative.
 
 =back
 
+=head1 COPYRIGHT
+
+Copyright (c) 2005, Sean M. Burke
+
+Copyright (c) 1999, Stephen Pandich.
+
+This library is free software; you can redistribute it and/or modify
+it only under the terms of version 2 of the GNU General Public License
+(L<perlgpl>).
+
+This program is distributed in the hope that it will be useful, but
+without any warranty; without even the implied warranty of
+merchantability or fitness for a particular purpose.
+
+(But if you have any problems with this library, I ask that you let
+me know.)
+
 
 =head1 AUTHOR
 
-Stephen Pandich, pandich@yahoo.com
+Original author: Stephen Pandich, pandich@yahoo.com
+
+Current maintainer: Sean M. Burke, sburke@cpan.org
 
 =cut
 

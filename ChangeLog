@@ -1,0 +1,27 @@
+Revision history for this dist...      // Time-stamp: "2005-01-01 17:08:39 AST"
+
+2005-01-01  Sean M. Burke  sburke@cpan.org
+	* Release 0.02 -- bugfix
+
+	* Taking over maintenance from 
+
+	* Fixed various bugs to do with 0.
+
+	* Corrected "Fourty" to "Forty"
+
+	* Added some tests, generally rearraged the dist.
+
+	* Known problems:
+	    Why Is Everything Titlecased?
+	    British people don't use billiard, etc., anymore
+	    Pointless use of OO
+	    "Four Hundred Zero"
+	
+	* TODO: Rewrite from scratch
+
+
+1999-05-16 - Stephen Pandich  steve@pandich.com
+
+	* Release 0.01
+	
+	* original version

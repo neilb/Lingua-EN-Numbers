@@ -1,7 +1,10 @@
-README
-INSTALL
-Changes
-MANIFEST
+ChangeLog
+lib/Lingua/EN/Numbers.pm
 Makefile.PL
-test.pl
-Numbers.pm
+MANIFEST
+MANIFEST.SKIP
+README
+t/01_about_verbose.t
+t/10_old_stuff.t
+t/20_main_integers.t
+META.yml                                 Module meta-data (added by MakeMaker)
