@@ -1,0 +1,28 @@
+INSTALLATION
+
+Lingua::EN::Numbers requires perl 5.004 or better.
+
+To install:
+
+	perl Makefile.PL
+	make
+	make test
+	make install
+
+
+TESTED PLATFORMS (well, er, PLATFORM)
+
+linux 2.2.5
+
+
+AUTHOR
+
+Stephen Pandich
+pandich@yahoo.com
+
+
+-------------------------------------------------------------
+Copyright (c) 1999 Stephen Pandich. All rights reserved.
+
+This package is free software; you can redistribute it and/or
+modify it under the same terms as Perl itself.

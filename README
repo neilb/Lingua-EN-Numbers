@@ -1,0 +1,30 @@
+This is Lingua::EN::Numbers, a module for converting numbers into
+their text equivalents.
+
+As I am an American, I had to wing the British aspects of this
+module: any suggestions by natives would make me say:
+
+	"Thanks a Milliard!!!"
+
+
+!!! EARLY ALPHA WARNING !!!
+
+This package is hot-off-the-keyboard and has not be tested in any
+significant fashion. Please contact me with all comments, suggestions,
+and bug reports. This is EARLY ALPHA software.
+
+
+See the INSTALL file for installation notes.
+
+
+AUTHOR
+
+Stephen Pandich
+pandich@yahoo.com
+
+
+-------------------------------------------------------------
+Copyright (c) 1999 Stephen Pandich. All rights reserved.
+
+This package is free software; you can redistribute it and/or
+modify it under the same terms as Perl itself.
