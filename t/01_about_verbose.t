@@ -1,6 +1,6 @@
 
 require 5;
-# Time-stamp: "2004-04-24 00:29:50 ADT"
+# Time-stamp: "2005-01-05 16:47:15 AST"
 
 # Summary of, well, things.
 
@@ -84,4 +84,3 @@ foreach my $x (sort {lc($a) cmp lc($b)} keys %INC) {
 }
 
 ok 1;
-

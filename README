@@ -1,2 +1,2 @@
 This is Lingua::EN::Numbers, a module for converting numbers into
-their text equivalents, like turning 42 into "forty-two".
+their English equivalents, like turning 42 into "forty-two".

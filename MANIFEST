@@ -5,6 +5,8 @@ MANIFEST
 MANIFEST.SKIP
 README
 t/01_about_verbose.t
-t/10_old_stuff.t
+t/02_about_env.t
+t/11_legacy_oo_interface.t
 t/20_main_integers.t
+t/30_v1_tests.t
 META.yml                                 Module meta-data (added by MakeMaker)

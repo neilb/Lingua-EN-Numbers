@@ -1,5 +1,19 @@
-Revision history for this dist...      // Time-stamp: "2005-01-01 17:08:39 AST"
+Revision history for this dist...      // Time-stamp: "2005-01-05 16:43:13 AST"
 
+
+2005-01-05  Sean M. Burke  sburke@cpan.org
+
+	* Release 1.01 -- total rewrite.
+
+	* It's more gooder now, in interface, internals, and accuracy.
+
+	* More tests.
+
+	* Mostly backwards compatable.  (But if you relied on the olde
+	stylee "British" mode, with "billiards" et al, you're out of
+	luck.)
+
+	
 2005-01-01  Sean M. Burke  sburke@cpan.org
 	* Release 0.02 -- bugfix
 
@@ -10,14 +24,6 @@ Revision history for this dist...      // Time-stamp: "2005-01-01 17:08:39 AST"
 	* Corrected "Fourty" to "Forty"
 
 	* Added some tests, generally rearraged the dist.
-
-	* Known problems:
-	    Why Is Everything Titlecased?
-	    British people don't use billiard, etc., anymore
-	    Pointless use of OO
-	    "Four Hundred Zero"
-	
-	* TODO: Rewrite from scratch
 
 
 1999-05-16 - Stephen Pandich  steve@pandich.com
