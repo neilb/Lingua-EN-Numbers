@@ -12,7 +12,7 @@ use vars qw(
  $MODE $TRUE $FALSE
  %D %Card2ord %Mult
 );
-$VERSION = '1.02';
+$VERSION = '1.03';
 @EXPORT    = ();
 @EXPORT_OK = qw( num2en num2en_ordinal );
 
@@ -226,7 +226,7 @@ sub _groupify {
   DEBUG > 2 and print "  Groupifying $basic x $multnum mults\n";
   return "$basic $Mult{$multnum}"  if  $Mult{$multnum};
    # Otherwise it must be huuuuuge, so fake it with scientific notation
-  return "$basic " . "times ten to the " . num2en_ordinal($basic * 3);
+  return "$basic " . "times ten to the " . num2en_ordinal($multnum * 3);
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

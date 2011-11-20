@@ -1,5 +1,10 @@
 Revision history for perl module Lingua::EN::Numbers
 
+1.03 2011-11-20
+
+    - Fixed bug in handling of very large numbers (when using bigint).
+      Reported by Steve Flitman, fix from Ben Bullock
+
 1.02 2011-11-20
 
     - Neil Bowers <neilb@cpan.org> has taken over maintenance
@@ -11,23 +16,23 @@ Revision history for perl module Lingua::EN::Numbers
 
 1.01 2005-01-05
 
-	- total rewrite
-	- It's more gooder now, in interface, internals, and accuracy.
-	- More tests.
-	- Mostly backwards compatable.  (But if you relied on the olde
-	  stylee "British" mode, with "billiards" et al, you're out of
-	  luck.)
+    - total rewrite
+    - It's more gooder now, in interface, internals, and accuracy.
+    - More tests.
+    - Mostly backwards compatable.  (But if you relied on the olde
+      stylee "British" mode, with "billiards" et al, you're out of
+      luck.)
 
 	
 0.02 2005-01-01  Sean M. Burke  sburke@cpan.org
 
-	- Sean M. Burke <sburke@cpan.org> took over maintenance
-	- Fixed various bugs to do with 0.
-	- Corrected "Fourty" to "Forty"
-	- Added some tests, generally rearraged the dist.
+    - Sean M. Burke <sburke@cpan.org> took over maintenance
+    - Fixed various bugs to do with 0.
+    - Corrected "Fourty" to "Forty"
+    - Added some tests, generally rearraged the dist.
 
 
 0.01 1999-05-16 - Stephen Pandich  steve@pandich.com
 
-	- original version by Stephen Pandich <steve@pandich.com>
+    - original version by Stephen Pandich <steve@pandich.com>
 
