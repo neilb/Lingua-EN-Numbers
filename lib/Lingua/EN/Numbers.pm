@@ -12,7 +12,7 @@ use vars qw(
  $MODE $TRUE $FALSE
  %D %Card2ord %Mult
 );
-$VERSION = '1.01';
+$VERSION = '1.02';
 @EXPORT    = ();
 @EXPORT_OK = qw( num2en num2en_ordinal );
 
@@ -194,8 +194,15 @@ sub _bigint2en {
 
   _chunks2en( \@chunks );
 
-  $chunks[-2] .= " and" if $and and @chunks > 1;
-  return "$chunks[0] $chunks[1]" if @chunks == 2;
+  # bugfix: neilb: deals with case where we have at least millions, thousands,
+  # but 00N for the last chunk.
+  # $chunks[-2] .= " and" if $and and @chunks > 1;
+  if ($and and @chunks > 1) {
+    $chunks[-2] .= " and $chunks[-1]";
+    pop(@chunks);
+  }
+
+  return "$chunks[0] $chunks[1]" if @chunks == 2 and !$and;
    # Avoid having a comma if just two units
   return join ", ", @chunks;
 }
@@ -299,7 +306,11 @@ Any commas in the input numbers are ignored.
 
 =head1 LEGACY INTERFACE
 
-For some amount of backward compatability with the old (before 1.01)
+B<Note:> this legacy interface is now deprecated, and will be dropped
+in a future release. Please let me (Neil) know if you're using this
+interface, and I'll do something to continue supporting you.
+
+For some amount of backward compatibility with the old (before 1.01)
 version of this module, the old OO interface is supported, where you can
 construct a number object with C<new(I<[optionalvalue]>)>, change its
 value with C<parse(I<value>)>, and get its Engish expression with
@@ -322,6 +333,8 @@ L<Lingua::EN::Numbers::Years>
 
 Copyright (c) 2005, Sean M. Burke, author of the later versions.
 
+Copyright (c) 2011, Neil Bowers, minor changes in 1.02 and later.
+
 This library is free software; you can redistribute it and/or modify
 it only under the terms of version 2 of the GNU General Public License
 (L<perlgpl>).
@@ -335,9 +348,10 @@ me know.)
 
 =head1 AUTHOR
 
-Sean M. Burke, sburke@cpan.org
+Neil Bowers E<lt>neilb@cpan.orgE<gt> is the current maintainer.
 
-(The author of the 0.01 version was Stephen Pandich.)
+This module was written by Sean M. Burke, after taking over the 0.01
+release from Stephen Pandich.
 
 =cut
 
