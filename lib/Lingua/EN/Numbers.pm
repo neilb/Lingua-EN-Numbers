@@ -12,7 +12,7 @@ use vars qw(
  $MODE $TRUE $FALSE
  %D %Card2ord %Mult
 );
-$VERSION = '1.03';
+$VERSION = '1.04';
 @EXPORT    = ();
 @EXPORT_OK = qw( num2en num2en_ordinal );
 
@@ -316,14 +316,15 @@ construct a number object with C<new(I<[optionalvalue]>)>, change its
 value with C<parse(I<value>)>, and get its Engish expression with
 C<get_string()>.
 
-The rest of the old version's interface (like 
-$Lingua::EN::Numbers::MODE and the other $Lingua::EN::Numbers::I<ALLCAPS>
-variables) are no longer supported.  This is not a great loss, as much
-of that stuff never worked right in the first place.
-
 =head1 SEE ALSO
 
-L<Lingua::EN::WordsToNumbers>
+L<http://neilb.org/reviews/spell-numbers.html> - a review of CPAN modules for converting numbers into English words.
+
+L<Lingua::EN::Nums2Words>
+
+L<Math::BigInt::Named>
+
+L<Number::Spell>
 
 L<Lingua::EN::Numbers::Ordinate>
 
@@ -333,7 +334,7 @@ L<Lingua::EN::Numbers::Years>
 
 Copyright (c) 2005, Sean M. Burke, author of the later versions.
 
-Copyright (c) 2011, Neil Bowers, minor changes in 1.02 and later.
+Copyright (c) 2011-2012, Neil Bowers, minor changes in 1.02 and later.
 
 This library is free software; you can redistribute it and/or modify
 it only under the terms of version 2 of the GNU General Public License

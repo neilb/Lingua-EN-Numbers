@@ -1,5 +1,12 @@
 Revision history for perl module Lingua::EN::Numbers
 
+1.04 2012-06-21
+
+    - Added links in SEE ALSO to all similar modules, and to the review
+      I did of all such modules for English.
+    - Corrected SEEL ALSO reference to a non-existent module
+      (reported by Karen Etheridge)
+
 1.03 2011-11-20
 
     - Fixed bug in handling of very large numbers (when using bigint).
