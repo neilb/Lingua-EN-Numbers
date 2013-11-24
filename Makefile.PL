@@ -9,8 +9,35 @@ require 5.004;
 use strict;
 use ExtUtils::MakeMaker;
 
+my $mm_ver = $ExtUtils::MakeMaker::VERSION;
+if ($mm_ver =~ /_/) { # dev version
+    $mm_ver = eval $mm_ver;
+    die $@ if $@;
+}
+
 WriteMakefile(
     'NAME'	=> 'Lingua::EN::Numbers',
     'VERSION_FROM' => 'lib/Lingua/EN/Numbers.pm', # finds $VERSION
     'dist'        => { COMPRESS => 'gzip -6f', SUFFIX => 'gz', },
+
+    ($mm_ver >= 6.31
+        ? (LICENSE => 'gpl')
+        : ()
+    ),
+
+    ($mm_ver <= 6.45
+        ? ()
+        : (META_MERGE => {
+            'meta-spec' => { version => 2 },
+            resources => {
+                bugtracker  => 'http://rt.cpan.org/Public/Dist/Display.html?Name=Lingua-EN-Numbers',
+                repository  => {
+                    type => 'git',
+                    web  => 'https://github.com/neilbowers/Lingua-EN-Numbers',
+                    url  => 'git://github.com/neilbowers/Lingua-EN-Numbers.git',
+                },
+            },
+          })
+    ),
+
 );

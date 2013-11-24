@@ -12,7 +12,7 @@ use vars qw(
  $MODE $TRUE $FALSE
  %D %Card2ord %Mult
 );
-$VERSION = '1.04';
+$VERSION = '1.05';
 @EXPORT    = ();
 @EXPORT_OK = qw( num2en num2en_ordinal );
 
@@ -334,7 +334,7 @@ L<Lingua::EN::Numbers::Years>
 
 Copyright (c) 2005, Sean M. Burke, author of the later versions.
 
-Copyright (c) 2011-2012, Neil Bowers, minor changes in 1.02 and later.
+Copyright (c) 2011-2013, Neil Bowers, minor changes in 1.02 and later.
 
 This library is free software; you can redistribute it and/or modify
 it only under the terms of version 2 of the GNU General Public License
