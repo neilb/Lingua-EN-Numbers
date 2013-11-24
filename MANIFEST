@@ -10,4 +10,3 @@ t/11_legacy_oo_interface.t
 t/20_main_integers.t
 t/30_v1_tests.t
 t/31_rogue_comma.t
-META.yml                                 Module meta-data (added by MakeMaker)
