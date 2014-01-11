@@ -4,6 +4,7 @@ Revision history for Perl module Lingua::EN::Numbers
 
     - Added "use warnings"
     - Added Lingua::EN::Inflect to SEE ALSO in doc
+    - Added MIN_PERL_VERSION => 5.006 to Makefile.PL
 
 1.05 2013-11-24
 
