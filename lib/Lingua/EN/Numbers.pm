@@ -6,13 +6,14 @@ require Exporter;
 @ISA = qw(Exporter);
 
 use strict;
+use warnings;
 BEGIN { *DEBUG = sub () {0} unless defined &DEBUG } # setup a DEBUG constant
 use vars qw(
  @EXPORT @EXPORT_OK $VERSION
  $MODE $TRUE $FALSE
  %D %Card2ord %Mult
 );
-$VERSION = '1.05';
+$VERSION = '1.06';
 @EXPORT    = ();
 @EXPORT_OK = qw( num2en num2en_ordinal );
 
