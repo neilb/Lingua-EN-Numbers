@@ -3,6 +3,7 @@ Revision history for Perl module Lingua::EN::Numbers
 1.06 2014-01-12
 
     - Added "use warnings"
+    - Added Lingua::EN::Inflect to SEE ALSO in doc
 
 1.05 2013-11-24
 

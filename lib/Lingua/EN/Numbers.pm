@@ -321,15 +321,12 @@ C<get_string()>.
 
 L<http://neilb.org/reviews/spell-numbers.html> - a review of CPAN modules for converting numbers into English words.
 
-L<Lingua::EN::Nums2Words>
-
-L<Math::BigInt::Named>
-
-L<Number::Spell>
-
-L<Lingua::EN::Numbers::Ordinate>
-
-L<Lingua::EN::Numbers::Years>
+L<Lingua::EN::Nums2Words>,
+L<Math::BigInt::Named>,
+L<Number::Spell>,
+L<Lingua::EN::Numbers::Ordinate>,
+L<Lingua::EN::Numbers::Years>,
+L<Lingua::EN::Inflect>.
 
 =head1 COPYRIGHT
 
