@@ -45,4 +45,11 @@ WriteMakefile(
         : ()
     ),
 
+    ($mm_ver >= 6.52
+        ? (CONFIGURE_REQUIRES => {
+                'ExtUtils::MakeMaker' => 6.30,
+          })
+        : ()
+    ),
+
 );
