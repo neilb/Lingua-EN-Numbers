@@ -52,4 +52,13 @@ WriteMakefile(
         : ()
     ),
 
+    ($mm_ver >= 6.64
+        ? (TEST_REQUIRES => {
+                'Test' => 0,
+                'Test::More' => 0.88,
+                'bigint' => 0,
+          })
+        : ()
+    ),
+
 );
