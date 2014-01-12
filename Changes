@@ -5,6 +5,7 @@ Revision history for Perl module Lingua::EN::Numbers
     - Added "use warnings"
     - Added Lingua::EN::Inflect to SEE ALSO in doc
     - Added MIN_PERL_VERSION => 5.006 to Makefile.PL
+    - Added PREREQ_PM to Makefile.PL
     - Added ExtUtils::MakeMaker to CONFIGURE_REQUIRES in Makefile.PL
     - Added Test, Test::More and bigint to TEST_REQUIRES in Makefile.PL
 

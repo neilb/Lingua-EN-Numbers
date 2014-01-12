@@ -19,6 +19,12 @@ WriteMakefile(
     'NAME'	=> 'Lingua::EN::Numbers',
     'VERSION_FROM' => 'lib/Lingua/EN/Numbers.pm', # finds $VERSION
     'dist'        => { COMPRESS => 'gzip -6f', SUFFIX => 'gz', },
+    PREREQ_PM      => {
+        'Exporter' => 0,
+        'strict' => 0,
+        'warnings' => 0,
+        'vars' => 0,
+    },
 
     ($mm_ver >= 6.31
         ? (LICENSE => 'gpl')
