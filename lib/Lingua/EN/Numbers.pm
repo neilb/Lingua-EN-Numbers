@@ -328,9 +328,13 @@ L<Lingua::EN::Numbers::Ordinate>,
 L<Lingua::EN::Numbers::Years>,
 L<Lingua::EN::Inflect>.
 
+=head1 REPOSITORY
+
+L<https://github.com/neilbowers/Lingua-EN-Numbers>
+
 =head1 COPYRIGHT
 
-Copyright (c) 2005, Sean M. Burke, author of the later versions.
+Copyright (c) 2005, Sean M. Burke.
 
 Copyright (c) 2011-2013, Neil Bowers, minor changes in 1.02 and later.
 
@@ -347,10 +351,14 @@ me know.)
 
 =head1 AUTHOR
 
-Neil Bowers E<lt>neilb@cpan.orgE<gt> is the current maintainer.
+The first release to CPAN, 0.01, was written by Stephen Pandich
+in 1999.
 
-This module was written by Sean M. Burke, after taking over the 0.01
-release from Stephen Pandich.
+Sean M Burke took over maintenance in 2005, and completely rewrote
+the module, releasing versions 0.02 and 1.01.
+
+Neil Bowers E<lt>neilb@cpan.orgE<gt> has been maintaining the module
+since 2011.
 
 =cut
 
