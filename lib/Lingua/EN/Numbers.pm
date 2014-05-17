@@ -13,7 +13,7 @@ use vars qw(
  $MODE $TRUE $FALSE
  %D %Card2ord %Mult
 );
-$VERSION = '1.06';
+$VERSION = '1.07';
 @EXPORT    = ();
 @EXPORT_OK = qw( num2en num2en_ordinal );
 
@@ -291,11 +291,15 @@ prints:
 
 =head1 DESCRIPTION
 
-Lingua::EN::Numbers turns numbers into English text.  It exports
-(upon request) two functions,
-C<num2en> and C<num2en_ordinal>.  Each takes a scalar value and returns
-a scalar value.  The return value is the English text expressing that 
-number; or if what you provided wasn't a number, then they return undef.
+Lingua::EN::Numbers provides a function C<num2en> that converts
+a number (such as 123) into English text
+(such as "one hundred and twenty-three").
+It also provides a function C<num2en_ordinal> that converts
+a number into the ordinal form in words,
+so 54 becomes "fifty-fourth".
+
+If you pass either function something that doesn't look like a number,
+they will return C<undef>.
 
 This module can handle integers like "12" or "-3" and real numbers like "53.19".
 
