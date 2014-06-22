@@ -13,7 +13,7 @@ use vars qw(
  $MODE $TRUE $FALSE
  %D %Card2ord %Mult
 );
-$VERSION = '1.06';
+$VERSION = '1.07';
 @EXPORT    = ();
 @EXPORT_OK = qw( num2en num2en_ordinal );
 
@@ -291,11 +291,15 @@ prints:
 
 =head1 DESCRIPTION
 
-Lingua::EN::Numbers turns numbers into English text.  It exports
-(upon request) two functions,
-C<num2en> and C<num2en_ordinal>.  Each takes a scalar value and returns
-a scalar value.  The return value is the English text expressing that 
-number; or if what you provided wasn't a number, then they return undef.
+Lingua::EN::Numbers provides a function C<num2en> that converts
+a number (such as 123) into English text
+(such as "one hundred and twenty-three").
+It also provides a function C<num2en_ordinal> that converts
+a number into the ordinal form in words,
+so 54 becomes "fifty-fourth".
+
+If you pass either function something that doesn't look like a number,
+they will return C<undef>.
 
 This module can handle integers like "12" or "-3" and real numbers like "53.19".
 
@@ -328,9 +332,13 @@ L<Lingua::EN::Numbers::Ordinate>,
 L<Lingua::EN::Numbers::Years>,
 L<Lingua::EN::Inflect>.
 
+=head1 REPOSITORY
+
+L<https://github.com/neilbowers/Lingua-EN-Numbers>
+
 =head1 COPYRIGHT
 
-Copyright (c) 2005, Sean M. Burke, author of the later versions.
+Copyright (c) 2005, Sean M. Burke.
 
 Copyright (c) 2011-2013, Neil Bowers, minor changes in 1.02 and later.
 
@@ -347,10 +355,14 @@ me know.)
 
 =head1 AUTHOR
 
-Neil Bowers E<lt>neilb@cpan.orgE<gt> is the current maintainer.
+The first release to CPAN, 0.01, was written by Stephen Pandich
+in 1999.
 
-This module was written by Sean M. Burke, after taking over the 0.01
-release from Stephen Pandich.
+Sean M Burke took over maintenance in 2005, and completely rewrote
+the module, releasing versions 0.02 and 1.01.
+
+Neil Bowers E<lt>neilb@cpan.orgE<gt> has been maintaining the module
+since 2011.
 
 =cut
 
