@@ -12,10 +12,11 @@ use vars qw(
  @EXPORT @EXPORT_OK $VERSION
  $MODE $TRUE $FALSE
  %D %Card2ord %Mult
+ %MADV %MADJ
 );
 $VERSION = '1.07';
 @EXPORT    = ();
-@EXPORT_OK = qw( num2en num2en_ordinal );
+@EXPORT_OK = qw( num2en num2en_ordinal num2en_multiadv num2en_multiadj );
 
 #--------------------------------------------------------------------------
 # Here begins the old junk, including mock-object stuff:
@@ -38,6 +39,15 @@ sub get_string { num2en( $_[0][0] ); }
 
 # End of legacy stuff.
 #--------------------------------------------------------------------------
+
+@MADV{1 .. 3} = qw|
+  once twice thrice
+|;
+
+@MADJ{1 .. 10} = qw|
+  single double triple quadruple quintuple
+  sextuple septuple octuple nonuple decuple
+|;
 
 @D{0 .. 20, 30,40,50,60,70,80,90} = qw|
  zero
@@ -123,6 +133,29 @@ sub num2en {
     _int2en($int),
     _fract2en($fract),
   ;
+}
+
+#==========================================================================
+
+sub num2en_multiadv {
+  return unless defined $_[0] and length $_[0];
+  my $x = $_[0];
+  my $y = num2en($x);
+  return "umpteen times" unless $y; # if we don't know the number, it must be a lot!
+
+  return $MADV{$x} if($MADV{$x});
+  return "$y times";
+}
+
+sub num2en_multiadj {
+  return unless defined $_[0] and length $_[0];
+  my $x = $_[0];
+  my $y = num2en($x);
+  return "many-fold" unless $y; # if we don't know the number, it must be a lot!
+  
+  return $MADJ{$x}   if($MADJ{$x});
+  return "${y}-fold" if($x % 10 == 0);
+  return "${y}fold";
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
