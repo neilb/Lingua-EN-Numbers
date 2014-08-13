@@ -13,7 +13,7 @@ use vars qw(
  $MODE $TRUE $FALSE
  %D %Card2ord %Mult
 );
-$VERSION = '1.07';
+$VERSION = '1.08';
 @EXPORT    = ();
 @EXPORT_OK = qw( num2en num2en_ordinal );
 
@@ -325,12 +325,55 @@ C<get_string()>.
 
 L<http://neilb.org/reviews/spell-numbers.html> - a review of CPAN modules for converting numbers into English words.
 
-L<Lingua::EN::Nums2Words>,
-L<Math::BigInt::Named>,
-L<Number::Spell>,
-L<Lingua::EN::Numbers::Ordinate>,
-L<Lingua::EN::Numbers::Years>,
-L<Lingua::EN::Inflect>.
+The following modules will convert a number into words:
+
+=over 4
+
+=item
+
+L<Lingua::EN::Inflect> provides a lot more besides, including conversion
+of singular to plural, selecting whether to use 'an' or 'a' before a word,
+and plenty more
+
+=item 
+
+L<Lingua::EN::Nums2Words> provides similar functionality,
+but can't handle exponential notation, and 3.14 produces
+"three and fourteen hundredths" instead of "three point one four".
+
+=item 
+
+L<Math::BigInt::Named> doesn't work.
+
+=item
+
+L<Number::Spell> doesn't handle negative numbers, exponential notation,
+or non-integer real numbers. The generated text doesn't contain any commas
+or the word 'and', so the results for long numbers don't scan.
+
+=back
+
+There are other modules which provide related, but not identical,
+functionality:
+
+=over 4
+
+=item
+
+L<Lingua::EN::Numbers::Ordinate> provides a function that will convert
+a cardinal number (such as "3") to an ordinal ("3rd").
+
+=item
+
+L<Lingua::EN::Numbers::Years> provides a function that will convert
+a year in numerals (eg "1984") into words ("nineteen eighty-four").
+
+=item
+
+L<Lingua::EN::Fractions> provides a function that will convert
+a numeric fraction (eg "3/4") into words ("three quarters").
+
+=back
 
 =head1 REPOSITORY
 
