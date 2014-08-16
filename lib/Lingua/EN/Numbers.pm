@@ -291,11 +291,11 @@ prints:
 
 =head1 DESCRIPTION
 
-Lingua::EN::Numbers provides a function C<num2en> that converts
-a number (such as 123) into English text
-(such as "one hundred and twenty-three").
-It also provides a function C<num2en_ordinal> that converts
-a number into the ordinal form in words,
+This module provides a function C<num2en>,
+which converts a number (such as 123) into English text
+("one hundred and twenty-three").
+It also provides a function C<num2en_ordinal>,
+which converts a number into the ordinal form in words,
 so 54 becomes "fifty-fourth".
 
 If you pass either function something that doesn't look like a number,
