@@ -1,6 +1,8 @@
 Revision history for Perl module Lingua::EN::Numbers
 
-1.08 2014-08-16
+2.00 2014-08-16
+    - Finally dropped the legacy OO interface (which was only the main
+      public interface for one release in 1999. So bumped major version.
     - Expanded SEE ALSO to give a small description of each module, and
       added Lingua::EN::Fractions at the same time.
     - Module had "require 5.004", but the code now requires 5.006.

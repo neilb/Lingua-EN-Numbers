@@ -10,34 +10,11 @@ use warnings;
 BEGIN { *DEBUG = sub () {0} unless defined &DEBUG } # setup a DEBUG constant
 use vars qw(
  @EXPORT @EXPORT_OK $VERSION
- $MODE $TRUE $FALSE
  %D %Card2ord %Mult
 );
-$VERSION = '1.08';
+$VERSION = '2.00';
 @EXPORT    = ();
 @EXPORT_OK = qw( num2en num2en_ordinal );
-
-#--------------------------------------------------------------------------
-# Here begins the old junk, including mock-object stuff:
-
-$TRUE = 1; $FALSE = 0; $MODE = "American";
-sub import { 
-  @_ = grep { $_ ne 'American' and $_ ne 'British' } @_;
-  goto &Exporter::import;
-}
-
-sub new {
-  my $class = shift;
-  my $obj = bless [undef],  ref($class) || $class;
-  $obj->parse($_[0]);
-  return $obj;
-}
-
-sub parse { $_[0][0] = $_[1]; return 1; }
-sub get_string { num2en( $_[0][0] ); }
-
-# End of legacy stuff.
-#--------------------------------------------------------------------------
 
 @D{0 .. 20, 30,40,50,60,70,80,90} = qw|
  zero
@@ -311,15 +288,8 @@ Any commas in the input numbers are ignored.
 
 =head1 LEGACY INTERFACE
 
-B<Note:> this legacy interface is now deprecated, and will be dropped
-in a future release. Please let me (Neil) know if you're using this
-interface, and I'll do something to continue supporting you.
-
-For some amount of backward compatibility with the old (before 1.01)
-version of this module, the old OO interface is supported, where you can
-construct a number object with C<new(I<[optionalvalue]>)>, change its
-value with C<parse(I<value>)>, and get its Engish expression with
-C<get_string()>.
+The first version of this module, 0.01 released in May 1995,
+had an OO interface. This was finally dropped in the 1.08 release.
 
 =head1 SEE ALSO
 

@@ -11,7 +11,7 @@ ok 1;
 
 print "# Using Lingua::EN::Numbers v$Lingua::EN::Numbers::VERSION\n";
 
-sub N { Lingua::EN::Numbers->new($_[0])->get_string }
+sub N { Lingua::EN::Numbers::num2en($_[0]) }
 
 ok N(0), "zero";
 ok N('0'), "zero";
