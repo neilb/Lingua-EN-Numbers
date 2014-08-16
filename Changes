@@ -3,6 +3,7 @@ Revision history for Perl module Lingua::EN::Numbers
 1.08 2014-08-16
     - Expanded SEE ALSO to give a small description of each module, and
       added Lingua::EN::Fractions at the same time.
+    - Module had "require 5.004", but the code now requires 5.006.
 
 1.07 2014-05-27
     - Added github repo to pod

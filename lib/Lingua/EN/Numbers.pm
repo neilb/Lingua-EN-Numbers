@@ -1,10 +1,10 @@
 
-require 5.004;  # Time-stamp: "2005-01-05 17:12:51 AST"
 package Lingua::EN::Numbers;
 
 require Exporter;
 @ISA = qw(Exporter);
 
+use 5.006;
 use strict;
 use warnings;
 BEGIN { *DEBUG = sub () {0} unless defined &DEBUG } # setup a DEBUG constant
