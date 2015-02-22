@@ -12,7 +12,7 @@ use vars qw(
  @EXPORT @EXPORT_OK $VERSION
  %D %Card2ord %Mult
 );
-$VERSION = '2.00';
+$VERSION = '2.01';
 @EXPORT    = ();
 @EXPORT_OK = qw( num2en num2en_ordinal );
 
@@ -55,7 +55,7 @@ sub num2en_ordinal {
   my $last = $1;
 
   $last =
-   $Card2ord{$last} || ( $last =~ s/y$/ieth/ && $last ) || ( $last . "th" );
+   $Card2ord{$last} || ( $last =~ s/y$/ieth/ && $last ) || ( $last !~ /th$/ ? $last . "th" : $last );
 
   return "$x$last";
 }

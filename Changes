@@ -1,6 +1,11 @@
 Revision history for Perl module Lingua::EN::Numbers
 
-2.00 2014-08-16
+2.01 2015-02-21 NEILB
+    - If the English words version of a number already finish in "th"
+      (eg "one times ten to the thirty-sixth") then don't append another "th"
+      to the ordinal. RT#102177 from DRL++
+
+2.00 2014-08-16 NEILB
     - Finally dropped the legacy OO interface (which was only the main
       public interface for one release in 1999. So bumped major version.
     - Expanded SEE ALSO to give a small description of each module, and
