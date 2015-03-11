@@ -1,7 +1,7 @@
 
 use strict;
 use Test;
-BEGIN { plan tests => 58 }
+BEGIN { plan tests => 60 }
 
 use Lingua::EN::Numbers qw(num2en num2en_ordinal);
 print "# Using Lingua::EN::Numbers v$Lingua::EN::Numbers::VERSION\n";
@@ -58,6 +58,8 @@ ok N '-14.000', 'negative fourteen point zero zero zero';
 
 # and maybe even:
 ok N '-1.53e34',  'negative one point five three times ten to the thirty-fourth';
+ok N  -1.53e34,   'negative one point five three times ten to the thirty-fourth';
+ok N '-1.53e+34', 'negative one point five three times ten to the thirty-fourth';
 ok N '-1.53e-34', 'negative one point five three times ten to the negative thirty-fourth';
 ok N '+19e009', 'positive nineteen times ten to the ninth';
 
