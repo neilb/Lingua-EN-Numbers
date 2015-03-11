@@ -229,7 +229,7 @@ sub _e2en {
         )
        )
       [eE]
-      (-?\d+)   # mantissa, has to be an integer
+      ([-+]?\d+)   # mantissa, has to be an integer
       $
     >x
   ) {
