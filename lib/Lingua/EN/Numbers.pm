@@ -12,7 +12,7 @@ use vars qw(
  @EXPORT @EXPORT_OK $VERSION
  %D %Card2ord %Mult
 );
-$VERSION = '2.01';
+$VERSION = '2.02';
 @EXPORT    = ();
 @EXPORT_OK = qw( num2en num2en_ordinal );
 

@@ -1,5 +1,9 @@
 Revision history for Perl module Lingua::EN::Numbers
 
+2.02 2015-03-11 NEILB
+    - Added Perl 5.20 to Travis config. SREZIC++
+    - Support for explicit plus in mantissa. SREZIC++
+
 2.01 2015-02-21 NEILB
     - If the English words version of a number already finish in "th"
       (eg "one times ten to the thirty-sixth") then don't append another "th"
