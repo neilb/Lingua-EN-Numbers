@@ -4,6 +4,7 @@ Revision history for Perl module Lingua::EN::Numbers
     - Changed \d to [0-9] for all relevant regexps. Thanks to Ben Bullock
       for the PR which did this.
     - Dropped use of "use vars", switching to "our $VERSION" etc.
+    - Changed github repo URL after changing my github username
 
 2.02 2015-03-11 NEILB
     - Added Perl 5.20 to Travis config. SREZIC++

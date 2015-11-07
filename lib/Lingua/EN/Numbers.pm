@@ -345,7 +345,7 @@ a numeric fraction (eg "3/4") into words ("three quarters").
 
 =head1 REPOSITORY
 
-L<https://github.com/neilbowers/Lingua-EN-Numbers>
+L<https://github.com/neilb/Lingua-EN-Numbers>
 
 =head1 COPYRIGHT
 

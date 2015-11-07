@@ -39,8 +39,8 @@ WriteMakefile(
                 bugtracker  => 'http://rt.cpan.org/Public/Dist/Display.html?Name=Lingua-EN-Numbers',
                 repository  => {
                     type => 'git',
-                    web  => 'https://github.com/neilbowers/Lingua-EN-Numbers',
-                    url  => 'git://github.com/neilbowers/Lingua-EN-Numbers.git',
+                    web  => 'https://github.com/neilb/Lingua-EN-Numbers',
+                    url  => 'git://github.com/neilb/Lingua-EN-Numbers.git',
                 },
             },
           })
