@@ -84,9 +84,9 @@ sub num2en {
   $sign = $1 if $x =~ s/^([-+])//s;
   
   my($int, $fract);
-  if(    $x =~ m<^\d+$>          ) { $int = $x }
-  elsif( $x =~ m<^(\d+)\.(\d+)$> ) { $int = $1; $fract = $2 }
-  elsif( $x =~ m<^\.(\d+)$>      ) { $fract = $1 }
+  if(    $x =~ m<^[0-9]+$>          ) { $int = $x }
+  elsif( $x =~ m<^([0-9]+)\.([0-9]+)$> ) { $int = $1; $fract = $2 }
+  elsif( $x =~ m<^\.([0-9]+)$>      ) { $fract = $1 }
   else {
     DEBUG and print "Not a number: \"orig\"\n";
     return undef;
@@ -122,7 +122,7 @@ sub _fract2en {    # "1234" => "point one two three four"
 
 sub _int2en {
   return undef unless defined $_[0] and length $_[0]
-   and $_[0] =~ m/^\d+$/s;
+   and $_[0] =~ m/^[0-9]+$/s;
 
   my($x) = $_[0];
 
@@ -146,7 +146,7 @@ sub _int2en {
 
 sub _bigint2en {
   return undef unless defined $_[0] and length $_[0]
-   and $_[0] =~ m/^\d+$/s;
+   and $_[0] =~ m/^[0-9]+$/s;
 
   my($x) = $_[0];
 
@@ -155,7 +155,7 @@ sub _bigint2en {
   {
     my $groupnum = 0;
     my $num;
-    while( $x =~ s<(\d{1,3})$><>s ) { # pull at most three digits from the end
+    while( $x =~ s<([0-9]{1,3})$><>s ) { # pull at most three digits from the end
       $num = $1 + 0;
       unshift @chunks, [ $num, $groupnum ] if $num;
       ++$groupnum;
@@ -225,11 +225,11 @@ sub _e2en {
       ^(
         [-+]?  # leading sign
         (?:
-          [\d,]+  |  [\d,]*\.\d+  # number
+          [0-9,]+  |  [0-9,]*\.[0-9]+  # number
         )
        )
       [eE]
-      ([-+]?\d+)   # mantissa, has to be an integer
+      ([-+]?[0-9]+)   # mantissa, has to be an integer
       $
     >x
   ) {
