@@ -8,13 +8,11 @@ use 5.006;
 use strict;
 use warnings;
 BEGIN { *DEBUG = sub () {0} unless defined &DEBUG } # setup a DEBUG constant
-use vars qw(
- @EXPORT @EXPORT_OK $VERSION
- %D %Card2ord %Mult
-);
-$VERSION = '2.03';
-@EXPORT    = ();
-@EXPORT_OK = qw( num2en num2en_ordinal );
+
+our $VERSION = '2.03';
+our @EXPORT    = ();
+our @EXPORT_OK = qw( num2en num2en_ordinal );
+our (%D, %Card2ord, %Mult);
 
 @D{0 .. 20, 30,40,50,60,70,80,90} = qw|
  zero
