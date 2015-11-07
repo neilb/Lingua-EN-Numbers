@@ -1,5 +1,9 @@
 Revision history for Perl module Lingua::EN::Numbers
 
+2.03 2015-11-07 NEILB
+    - Changed \d to [0-9] for all relevant regexps. Thanks to Ben Bullock
+      for the PR which did this.
+
 2.02 2015-03-11 NEILB
     - Added Perl 5.20 to Travis config. SREZIC++
     - Support for explicit plus in mantissa. SREZIC++
