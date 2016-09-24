@@ -6,4 +6,5 @@ use Lingua::EN::Numbers 'num2en';
 my $wide = '１.２３';
 my $out = num2en ($wide);
 ok (! defined $out);
+is (num2en ('∞'), 'infinity');
 done_testing ();

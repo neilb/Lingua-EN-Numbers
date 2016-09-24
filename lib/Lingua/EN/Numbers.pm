@@ -7,6 +7,8 @@ require Exporter;
 use 5.006;
 use strict;
 use warnings;
+use utf8;
+
 BEGIN { *DEBUG = sub () {0} unless defined &DEBUG } # setup a DEBUG constant
 use vars qw(
  @EXPORT @EXPORT_OK $VERSION
@@ -62,14 +64,16 @@ sub num2en_ordinal {
 
 #==========================================================================
 
+my $infinity = qr/(?:inf(?:inity)?|∞)/;
+
 sub num2en {
   my $x = $_[0];
   return undef unless defined $x and length $x;
 
   return 'not-a-number'      if $x eq 'NaN';
-  return 'positive infinity' if $x =~ m/^\+inf(?:inity)?$/si;
-  return 'negative infinity' if $x =~ m/^\-inf(?:inity)?$/si;
-  return          'infinity' if $x =~  m/^inf(?:inity)?$/si;
+  return 'positive infinity' if $x =~ m/^\+$infinity$/si;
+  return 'negative infinity' if $x =~ m/^\-$infinity$/si;
+  return          'infinity' if $x =~  m/^$infinity$/si;
 
   return $D{$x} if exists $D{$x};  # the most common cases
 
