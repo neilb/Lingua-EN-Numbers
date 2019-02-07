@@ -1,6 +1,5 @@
 
 package Lingua::EN::Numbers;
-
 require Exporter;
 @ISA = qw(Exporter);
 
@@ -125,7 +124,8 @@ sub _int2en {
   my($x) = $_[0];
 
   return $D{$x} if defined $D{$x};  # most common/irreg cases
-  
+  # Strip leading 0s, leaving last digit untouched, might be 0. 
+  $x =~ s/^0+(?=[0-9])//; 
   if( $x =~ m/^(.)(.)$/ ) {
     return  $D{$1 . '0'} . '-' . $D{$2};
      # like    forty        -     two

@@ -4,7 +4,7 @@ require 5;
 use strict;
 use Test;
 
-BEGIN { plan tests => 18 }
+BEGIN { plan tests => 23 }
 
 use Lingua::EN::Numbers;
 ok 1;
@@ -15,6 +15,7 @@ sub N { Lingua::EN::Numbers::num2en($_[0]) }
 
 ok N(0), "zero";
 ok N('0'), "zero";
+ok N('00'), "zero";
 ok N('-0'), "negative zero";
 ok N('0.0'), "zero point zero";
 ok N('.0'), "point zero";
@@ -24,6 +25,11 @@ ok N(3), "three";
 ok N(4), "four";
 ok N(40), "forty";
 ok N(42), "forty-two";
+ok N('7'), "seven";
+ok N('07'), "seven";
+ok N('007'), "seven";
+ok N('0007'), "seven";
+
 
 
 ok N(400), "four hundred";
