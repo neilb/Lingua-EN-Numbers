@@ -76,15 +76,18 @@ sub num2en {
   
   my $orig = $x;
 
-  $x =~ s/,//g; # nix any commas
+  # if there are more commas, get rid of them
+  # otherwise treat it as ., in some countries is used , instead of .
+
+  $x =~ s/,//g if $x =~ /\,.*\,/s; # nix any commas
 
   my $sign;
   $sign = $1 if $x =~ s/^([-+])//s;
   
   my($int, $fract);
   if(    $x =~ m<^[0-9]+$>          ) { $int = $x }
-  elsif( $x =~ m<^([0-9]+)\.([0-9]+)$> ) { $int = $1; $fract = $2 }
-  elsif( $x =~ m<^\.([0-9]+)$>      ) { $fract = $1 }
+  elsif( $x =~ m<^([0-9]+)[.,]([0-9]+)$> ) { $int = $1; $fract = $2 }
+  elsif( $x =~ m<^[.,]([0-9]+)$>      ) { $fract = $1 }
   else {
     DEBUG and print "Not a number: \"orig\"\n";
     return undef;
