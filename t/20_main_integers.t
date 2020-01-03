@@ -4,7 +4,7 @@ require 5;
 use strict;
 use Test;
 
-BEGIN { plan tests => 18 }
+BEGIN { plan tests => 22 }
 
 use Lingua::EN::Numbers;
 ok 1;
@@ -28,9 +28,12 @@ ok N(42), "forty-two";
 
 ok N(400), "four hundred";
 ok N('0.1'), "zero point one";
+ok N('0,1'), "zero point one";
 ok N('.1'), "point one";
+ok N(',1'), "point one";
 ok N('.01'), "point zero one";
-
+ok N(',01'), "point zero one";
+ok N('1,000,000'), "one million";
 
 ok N('4003'), "four thousand and three";
 
