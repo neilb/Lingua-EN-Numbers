@@ -1,7 +1,7 @@
 
 use strict;
 use Test;
-BEGIN { plan tests => 60 }
+BEGIN { plan tests => 65 }
 
 use Lingua::EN::Numbers qw(num2en num2en_ordinal);
 print "# Using Lingua::EN::Numbers v$Lingua::EN::Numbers::VERSION\n";
@@ -77,6 +77,12 @@ ok !defined N "5 bananas";
 ok !defined N "x5x";
 ok !defined N "";
 ok !defined N undef;
+
+ok !defined O "";
+ok !Lingua::EN::Numbers::_int2en(' ');
+ok !Lingua::EN::Numbers::_sign2en('');
+ok !Lingua::EN::Numbers::_fract2en('');
+ok !Lingua::EN::Numbers::_bigint2en(' ');
 
 print "# Okay, seeya.\n";
 ok 1;
